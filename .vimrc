@@ -1,4 +1,4 @@
-" Enable copying to clipboard using 
+" Enable copying to clipboard using
 map <C-c> y:e ~/clipsongzboard<CR>P:w !pbcopy<CR><CR>:bdelete!<CR>
 
 set nocompatible              " be iMproved, required
@@ -51,24 +51,34 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'blueshirts/darcula'
-Plugin 'pangloss/vim-javascript'
+
+" Plugins for UI
+Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'Raimondi/delimitMate'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'justincampbell/vim-eighties'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'mileszs/ack.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-rails'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'justincampbell/vim-eighties'
+
+" Usage Plugins
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'Lokaltog/vim-easymotion'
+
+" Autocomplete Plugins
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Raimondi/delimitMate'
+
+" Language Plugins
+Plugin 'mattn/emmet-vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 
 let mapleader="\<space>"
 set timeout timeoutlen=1500
@@ -83,11 +93,11 @@ filetype plugin indent on    " required
 
 au FileType xhtml,html,htm,php,xml setlocal tabstop=2
 au FileType xhtml,html,htm,php,xml setlocal shiftwidth=2
-"au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to spaces (use :retab to redo entire file)
-au FileType xhtml,html,htm,php,xml setlocal softtabstop=2   " (sts) makes spaces feel like tabs (like deleting) 
-au FileType c,h,java,js setlocal mps+==:;                   " allow the match pairs operation (%) to work with '=' and ';' 
+au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to spaces (use :retab to redo entire file)
+au FileType xhtml,html,htm,php,xml setlocal softtabstop=2   " (sts) makes spaces feel like tabs (like deleting)
+au FileType c,h,java,js setlocal mps+==:;                   " allow the match pairs operation (%) to work with '=' and ';'
 au FileType c,h setlocal cindent                            " enable the intelligent cindent (cin) feature for the following files
-au FileType java,js setlocal smartindent                    " enable the smartindenting (si) feature for the following files 
+au FileType java,js setlocal smartindent                    " enable the smartindenting (si) feature for the following files
 au FileType txt setlocal fo+=tn
 
 " Syntax Highlighting
@@ -100,7 +110,6 @@ set laststatus=2
 
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts = 1
-"set guifont=Menlo\ LG\ L\ for\ Powerline
 set guifont=Liberation\ Mono\ for\ Powerline
 
 let g:Powerline_symbols = 'fancy'
@@ -135,3 +144,7 @@ map <Leader>f <Plug>(easymotion-s)
 " " Set quicker EasyMotion motion
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>b <Plug>(easymotion-b)
+
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
