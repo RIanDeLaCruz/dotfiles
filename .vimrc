@@ -1,4 +1,4 @@
-" Enable copying to clipboard using 
+" Enable copying to clipboard using
 map <C-c> y:e ~/clipsongzboard<CR>P:w !pbcopy<CR><CR>:bdelete!<CR>
 
 set nocompatible              " be iMproved, required
@@ -41,7 +41,12 @@ set splitright
 " Tab Management
 nnoremap <C-t> :tabnew<CR>
 inoremap <C-t> <Esc>:tabnew<CR>
-nnoremap td  :tabclose<CR>
+nnoremap td :tabclose<CR>
+
+
+" Remap jj/jk to escape in insert mode!
+inoremap jj <Esc>
+inoremap jk <Esc>
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -54,6 +59,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'blueshirts/darcula'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Raimondi/delimitMate'
 Plugin 'marijnh/tern_for_vim'
@@ -69,6 +75,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'justincampbell/vim-eighties'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'edsono/vim-matchit'
 
 let mapleader="\<space>"
 set timeout timeoutlen=1500
@@ -83,11 +90,11 @@ filetype plugin indent on    " required
 
 au FileType xhtml,html,htm,php,xml setlocal tabstop=2
 au FileType xhtml,html,htm,php,xml setlocal shiftwidth=2
-"au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to spaces (use :retab to redo entire file)
-au FileType xhtml,html,htm,php,xml setlocal softtabstop=2   " (sts) makes spaces feel like tabs (like deleting) 
-au FileType c,h,java,js setlocal mps+==:;                   " allow the match pairs operation (%) to work with '=' and ';' 
+au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to spaces (use :retab to redo entire file)
+au FileType xhtml,html,htm,php,xml setlocal softtabstop=2   " (sts) makes spaces feel like tabs (like deleting)
+au FileType c,h,java,js setlocal mps+==:;                   " allow the match pairs operation (%) to work with '=' and ';'
 au FileType c,h setlocal cindent                            " enable the intelligent cindent (cin) feature for the following files
-au FileType java,js setlocal smartindent                    " enable the smartindenting (si) feature for the following files 
+au FileType java,js setlocal smartindent                    " enable the smartindenting (si) feature for the following files
 au FileType txt setlocal fo+=tn
 
 " Syntax Highlighting
@@ -135,3 +142,12 @@ map <Leader>f <Plug>(easymotion-s)
 " " Set quicker EasyMotion motion
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>b <Plug>(easymotion-b)
+
+" Tab Indent Guides
+"set ts=2 sw=2 et
+let g:indent_guides_guide_size=1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=darkgrey   ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey   ctermbg=237
+let indent_guides_color_change_percent = 10
+let g:UltiSnipsExpandTrigger="<c-j>"
