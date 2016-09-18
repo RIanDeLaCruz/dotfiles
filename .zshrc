@@ -55,6 +55,10 @@ plugins=(git vi-mode node npm)
 
 export PATH="~/.rvm/gems/ruby-2.3.1/bin:~/.rvm/gems/ruby-2.3.1@global/bin:~/.rvm/rubies/ruby-2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.rvm/bin:~/.rvm/bin:~/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export START="/Volumes/Storage"
+if [[ $PWD == $HOME ]]; then
+  cd $START
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,16 +86,27 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias redis-browse="cd ~ && redis-browser --url redis://localhost:6379"
+alias http="python -m SimpleHTTPServer"
+
 function mdir() {
   mkdir "$1" && cd $_
 }
 
-bindkey -v
-DEFAULT_USER=`whoami`
-
-export DEFAULT_USER=`whoami`
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Create the grippass function which handles running the grip program with
+# an access token.
+# Grip is a program that enables one to view their Markdown files locally
+# Grip is found here: https://github.com/joeyespo/grip
+function grippass() {
+  if [ "$1" = "" ]; then
+    echo "Please pass a file with the token or paste the token as an argument"
+  else
+    while read -r LINE; do
+      grip --pass "$LINE"
+    done < "$1"
+  fi
+}
 
 man() {
   env \
@@ -103,3 +118,10 @@ man() {
     LESS_TERMCAP_us=$'\e[1;32m' \
       man "$@"
 }
+
+bindkey -v
+DEFAULT_USER=`whoami`
+
+export DEFAULT_USER=`whoami`
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
