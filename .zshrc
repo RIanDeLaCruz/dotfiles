@@ -89,6 +89,9 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias redis-browse="cd ~ && redis-browser --url redis://localhost:6379"
 alias http="python -m SimpleHTTPServer"
+alias gdn="cd /Volumes/Storage/The\ GUIDON"
+alias vol="cd /Volumes/Storage"
+alias gfab="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done"
 
 function mdir() {
   mkdir "$1" && cd $_
@@ -125,3 +128,9 @@ DEFAULT_USER=`whoami`
 export DEFAULT_USER=`whoami`
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/phantomjs"
+export PATH="$PATH:/usr/local/bin/powerline_config"
+
+export NVM_DIR="/Users/IanDeLaCruz/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="$PATH:$HOME/.yarn/bin"
