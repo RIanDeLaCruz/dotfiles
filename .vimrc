@@ -48,6 +48,9 @@ nnoremap td :tabclose<CR>
 inoremap jj <Esc>
 inoremap jk <Esc>
 
+" Code Folding
+set fdm=syntax
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
