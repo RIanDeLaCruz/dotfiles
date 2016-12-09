@@ -89,7 +89,8 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias redis-browse="cd ~ && redis-browser --url redis://localhost:6379"
 alias http="python -m SimpleHTTPServer"
-alias gdn="cd /Volumes/Storage/The\ GUIDON"
+alias gdn="cd /Volumes/Storage/TheGUIDON"
+alias CompSAt="cd /Volumes/Storage/CompSAt"
 alias vol="cd /Volumes/Storage"
 alias gfab="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done"
 
@@ -134,3 +135,7 @@ export PATH="$PATH:/usr/local/bin/powerline_config"
 export NVM_DIR="/Users/IanDeLaCruz/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="$PATH:$HOME/.yarn/bin"
+export JUNIT_HOME="/Library/JUNIT"
+export CLASSPATH="$JUNIT_HOME/junit4.10.jar"
+export EDITOR="vim"
+alias git-manindigan="git commit $1"

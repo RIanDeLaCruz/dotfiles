@@ -61,6 +61,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins for UI
+Plugin 'dracula/vim'
+Plugin 'crusoexia/vim-monokai'
+Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-fugitive'
@@ -88,6 +91,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'edsono/vim-matchit'
 Plugin 'tpope/vim-rails'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'nikvdp/ejs-syntax'
 
 let mapleader="\<space>"
 set timeout timeoutlen=1500
@@ -112,7 +117,9 @@ au FileType txt setlocal fo+=tn
 " Syntax Highlighting
 syntax enable
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+colorscheme monokai
+"color dracula
 
 " Airline Settings
 set laststatus=2
@@ -124,7 +131,7 @@ set guifont=Liberation\ Mono\ for\ Powerline
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+set term=screen-256color
 set termencoding=utf-8
 
 " Ctrl P Settings
@@ -137,8 +144,18 @@ set termencoding=utf-8
 inoremap jj <Esc>
 inoremap jk <Esc>
 
+
+" Netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize=15
+
+" Lexplore
+map <Leader>l :Lexplore<CR>
+
 " NerdTree Configurations
 map <C-n> :NERDTreeToggle<CR>
+map <Leader>t :NERDTreeToggle<CR>
 
 "
 "" EasyMotion Settings
@@ -164,3 +181,30 @@ let indent_guides_color_change_percent = 10
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
+
+" Enables relative numbers.
+function! EnableRelativeNumbers()
+  set number
+  set relativenumber
+endfunc
+
+" Disables relative numbers.
+function! DisableRelativeNumbers()
+  set number
+  set norelativenumber
+endfunc
+
+" NumberToggle toggles between relative and absolute line numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    call DisableRelativeNumbers()
+    let g:relativemode = 0
+  else
+    call EnableRelativeNumbers()
+    let g:relativemode = 1
+  endif
+endfunc
+
+nnoremap <Leader>n :call NumberToggle()<CR>
+
+map <Leader>h :nohl<CR>
