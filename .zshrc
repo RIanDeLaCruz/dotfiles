@@ -95,6 +95,7 @@ alias vol="cd /Volumes/Storage"
 alias gfab="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done"
 alias md2pdf="markdown-pdf -s $1 $2"
 alias vim="nvim"
+alias lsize="ls -lShog"
 
 function mdir() {
   mkdir "$1" && cd $_
