@@ -89,9 +89,12 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias redis-browse="cd ~ && redis-browser --url redis://localhost:6379"
 alias http="python -m SimpleHTTPServer"
-alias gdn="cd /Volumes/Storage/The\ GUIDON"
+alias gdn="cd /Volumes/Storage/TheGUIDON"
+alias CompSAt="cd /Volumes/Storage/CompSAt"
 alias vol="cd /Volumes/Storage"
 alias gfab="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done"
+alias md2pdf="markdown-pdf -s $1 $2"
+alias vim="nvim"
 
 function mdir() {
   mkdir "$1" && cd $_
@@ -109,6 +112,12 @@ function grippass() {
       grip --pass "$LINE"
     done < "$1"
   fi
+}
+
+function install_jsctags {
+  npm install jsctags
+  # https://github.com/mozilla/doctorjs/issues/52
+  gsed -i '51i tags: [],' ./node_modules/jsctags/jsctags/ctags/index.js
 }
 
 man() {
@@ -134,3 +143,9 @@ export PATH="$PATH:/usr/local/bin/powerline_config"
 export NVM_DIR="/Users/IanDeLaCruz/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="$PATH:$HOME/.yarn/bin"
+export JUNIT_HOME="/Library/JUNIT"
+export CLASSPATH="$JUNIT_HOME/junit4.10.jar"
+export EDITOR="vim"
+alias git-manindigan="git commit $1"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
