@@ -93,6 +93,8 @@ alias gdn="cd /Volumes/Storage/TheGUIDON"
 alias CompSAt="cd /Volumes/Storage/CompSAt"
 alias vol="cd /Volumes/Storage"
 alias gfab="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done"
+alias md2pdf="markdown-pdf -s $1 $2"
+alias vim="nvim"
 
 function mdir() {
   mkdir "$1" && cd $_
@@ -110,6 +112,12 @@ function grippass() {
       grip --pass "$LINE"
     done < "$1"
   fi
+}
+
+function install_jsctags {
+  npm install jsctags
+  # https://github.com/mozilla/doctorjs/issues/52
+  gsed -i '51i tags: [],' ./node_modules/jsctags/jsctags/ctags/index.js
 }
 
 man() {
@@ -139,3 +147,5 @@ export JUNIT_HOME="/Library/JUNIT"
 export CLASSPATH="$JUNIT_HOME/junit4.10.jar"
 export EDITOR="vim"
 alias git-manindigan="git commit $1"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

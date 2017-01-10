@@ -1,6 +1,5 @@
 " Enable copying to clipboard using
 map <C-c> y:e ~/clipsongzboard<CR>P:w !pbcopy<CR><CR>:bdelete!<CR>
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set noswapfile
@@ -31,8 +30,8 @@ set backspace=indent,eol,start
 " Window Navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
 
 " Window Splits
 set splitbelow
@@ -61,9 +60,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins for UI
-Plugin 'dracula/vim'
 Plugin 'crusoexia/vim-monokai'
-Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-fugitive'
@@ -88,11 +85,13 @@ Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'edsono/vim-matchit'
 Plugin 'tpope/vim-rails'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'nikvdp/ejs-syntax'
+Plugin 'rust-lang/rust.vim'
 
 let mapleader="\<space>"
 set timeout timeoutlen=1500
@@ -102,6 +101,7 @@ set completeopt-=preview
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+filetype plugin on
 filetype plugin indent on    " required
 
 
@@ -111,13 +111,16 @@ au FileType xhtml,html,htm,php,xml setlocal expandtab      " (et) expand tabs to
 au FileType xhtml,html,htm,php,xml setlocal softtabstop=2   " (sts) makes spaces feel like tabs (like deleting)
 au FileType c,h,java,js setlocal mps+==:;                   " allow the match pairs operation (%) to work with '=' and ';'
 au FileType c,h setlocal cindent                            " enable the intelligent cindent (cin) feature for the following files
+au FileType js setlocal tabstop=2 expandtab
 au FileType java,js setlocal smartindent                    " enable the smartindenting (si) feature for the following files
 au FileType txt setlocal fo+=tn
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
+let g:jsx_ext_required = 0
 
 " Syntax Highlighting
 syntax enable
 set background=dark
-"colorscheme molokai
 colorscheme monokai
 "color dracula
 
@@ -131,7 +134,8 @@ set guifont=Liberation\ Mono\ for\ Powerline
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-set term=screen-256color
+"set term=screen-256color
+set termguicolors
 set termencoding=utf-8
 
 " Ctrl P Settings
@@ -139,6 +143,11 @@ set termencoding=utf-8
 "let g:ctrlp_user_command = 'ag %s -l -i --nocolor -g "'
 "let g:ackprg = 'ag --vimgrep'
 "let g:ctrlp_match_window = 'results:20'"
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules/.',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
 " Remap jj/jk to escape in insert mode!
 inoremap jj <Esc>
@@ -204,6 +213,13 @@ function! NumberToggle()
     let g:relativemode = 1
   endif
 endfunc
+
+" Generate ctags
+function! JSTags()
+  execute ":! es-ctags -R ."
+endfunc
+
+nnoremap <Leader>j :call JSTags()<CR>
 
 nnoremap <Leader>n :call NumberToggle()<CR>
 
