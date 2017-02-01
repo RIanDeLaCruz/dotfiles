@@ -53,7 +53,7 @@ plugins=(git vi-mode node npm)
 
 # User configuration
 
-export PATH="~/.rvm/gems/ruby-2.3.1/bin:~/.rvm/gems/ruby-2.3.1@global/bin:~/.rvm/rubies/ruby-2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.rvm/bin:~/.rvm/bin:~/.rvm/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.rvm/bin:~/.rvm/bin:~/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 export START="/Volumes/Storage"
 if [[ $PWD == $HOME ]]; then
@@ -95,6 +95,7 @@ alias vol="cd /Volumes/Storage"
 alias gfab="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done"
 alias md2pdf="markdown-pdf -s $1 $2"
 alias vim="nvim"
+alias ateneo="cd /Volumes/Storage/MEGA/ATENEO/Senior/Second\ Semester"
 alias lsize="ls -lShog"
 
 function mdir() {
@@ -140,6 +141,10 @@ export DEFAULT_USER=`whoami`
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/phantomjs"
 export PATH="$PATH:/usr/local/bin/powerline_config"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.rvm/gems/ruby-2.3.1/bin:$PATH"
+export PATH="$PATH:$HOME/Library/Android/sdk/tools"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
 export NVM_DIR="/Users/IanDeLaCruz/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

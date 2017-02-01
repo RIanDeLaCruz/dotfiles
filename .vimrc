@@ -13,6 +13,7 @@ set showmode
 set number
 set ruler
 set cc=80
+set tw=82
 set history=50
 set hlsearch
 set cul         " Highlight current line"
@@ -64,6 +65,7 @@ Plugin 'crusoexia/vim-monokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'justincampbell/vim-eighties'
 Plugin 'scrooloose/nerdtree'
@@ -143,8 +145,9 @@ set termencoding=utf-8
 "let g:ctrlp_user_command = 'ag %s -l -i --nocolor -g "'
 "let g:ackprg = 'ag --vimgrep'
 "let g:ctrlp_match_window = 'results:20'"
+let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules/.',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules/.|vendor/.|platforms/.|plugins/.',
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -214,13 +217,22 @@ function! NumberToggle()
   endif
 endfunc
 
-" Generate ctags
+" Generate JS ctags
 function! JSTags()
   execute ":! es-ctags -R ."
 endfunc
 
+" Generate PHP ctags
+function! PHPTags()
+  execute ":! php ./phpctags -R ."
+endfunc
+
 nnoremap <Leader>j :call JSTags()<CR>
-
+nnoremap <Leader>p :call PHPTags()<CR>
 nnoremap <Leader>n :call NumberToggle()<CR>
-
 map <Leader>h :nohl<CR>
+
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
