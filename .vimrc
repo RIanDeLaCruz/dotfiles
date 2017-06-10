@@ -60,16 +60,21 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'tpope/vim-obsession'
+Plugin 'Yggdroot/indentLine'
+
 " Plugins for UI
 Plugin 'crusoexia/vim-monokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'justincampbell/vim-eighties'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+"Plugin 'Valloric/MatchTagAlways'
 
 " Usage Plugins
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -231,8 +236,14 @@ nnoremap <Leader>j :call JSTags()<CR>
 nnoremap <Leader>p :call PHPTags()<CR>
 nnoremap <Leader>n :call NumberToggle()<CR>
 map <Leader>h :nohl<CR>
+nnoremap <Leader>il :IndentLinesToggle<CR>
 
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <CR> :nohlsearch<CR>:set cul cuc<cr>:sleep 50m<cr>:set nocuc<cr>/<BS>
+
+"tnoremap <A-h> <C-\><C-n><C-w>h
+"tnoremap <A-j> <C-\><C-n><C-w>j
+"tnoremap <A-k> <C-\><C-n><C-w>k
+"tnoremap <A-l> <C-\><C-n><C-w>l
+
+let g:indentLine_char = '—'
+let g:indentLine_enabled = 0
